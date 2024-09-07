@@ -1,4 +1,4 @@
-# version: '1.0'
+#version: '3.8'
 
 services:
   database:
@@ -13,6 +13,34 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
       - ./db:/docker-entrypoint-initdb.d
+      - ./db/config/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./db/log/entrypoint.sh:/entrypoint.sh
+#    entrypoint: ["/bin/bash"]
+#    command:
+#      - "/entrypoint.sh"
 volumes:
   db_data:
 
+
+## version: '1.0'
+#
+#services:
+#  database:
+#    image: postgres:latest
+#    container_name: generic_task
+#    environment:
+#      POSTGRES_USER: user
+#      POSTGRES_PASSWORD: password
+#      POSTGRES_DB: generic
+#    ports:
+#      - 5432:5432
+#    volumes:
+#      - db_data:/var/lib/postgresql/data
+#      - ./db:/docker-entrypoint-initdb.d
+#      - ./db/config/postgresql.conf:/etc/postgresql/postgresql.conf
+#      - ./db/log/entrypoint.sh:/entrypoint.sh
+#    entrypoint: ["/bin/bash"]
+#    command:
+#      - "/entrypoint.sh"
+#volumes:
+#  db_data:
